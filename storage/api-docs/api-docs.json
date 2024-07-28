@@ -1,0 +1,40 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API WITH SWAGGER",
+        "description": "Está é uma api, para fins de aprendizado sobre a utilização do swagger",
+        "contact": {
+            "email": "caiquebispodanet86@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8001",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/getVersion": {
+            "get": {
+                "operationId": "c6e93856b50585519bda2c6d60c96db1",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

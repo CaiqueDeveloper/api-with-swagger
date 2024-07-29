@@ -4,7 +4,6 @@ namespace App\Traits\Http\Controllers\Api;
 
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;
-use OpenApi\Attributes\RequestBody;
 
 trait SwaggerUser
 {
@@ -91,7 +90,7 @@ trait SwaggerUser
                     'bearerAuth' => []
                 ]
             ],
-            requestBody: new  RequestBody(
+            requestBody: new  OA\RequestBody(
                 required: true,
                 content: new OA\MediaType(
                     mediaType: 'application/json',

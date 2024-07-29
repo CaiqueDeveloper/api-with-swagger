@@ -15,7 +15,10 @@ return new class extends Migration
         Schema::create('todos', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->foreignId(User::class);
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('name');
             $table->boolean('status')->default(true);
             $table->timestamps();

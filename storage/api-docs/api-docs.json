@@ -379,7 +379,7 @@
                                                     "todo": [
                                                         {
                                                             "id": 1,
-                                                            "user_id": 1,
+                                                            "Todo_id": 1,
                                                             "name": "Todo teste",
                                                             "status": 1,
                                                             "created_at": "2024-07-29T20:13:35.000000Z",
@@ -443,6 +443,151 @@
                     }
                 ]
             },
+            "put": {
+                "tags": [
+                    "Todos"
+                ],
+                "description": "Update Todo",
+                "operationId": "46198c73ec7432b7ca553d3691b6d61b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "name"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "ID",
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "Todo Name",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "Status",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "example": {
+                                "id": 1,
+                                "name": "Todos Updated",
+                                "status": 0
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Todo updated successfully!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "meta": {
+                                                    "code": 202,
+                                                    "status": "success",
+                                                    "message": "Todo updated successfully!"
+                                                },
+                                                "data": {
+                                                    "todo": {
+                                                        "id": 1,
+                                                        "name": "Updated Todo",
+                                                        "status": 1,
+                                                        "created_at": "2024-07-29T17:18:41.000000Z",
+                                                        "updated_at": "2024-07-29T17:53:34.000000Z"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "success": false,
+                                                "message": "Validation errors",
+                                                "data": {
+                                                    "id": [
+                                                        "The id field is required."
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Todo successfully!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "meta": {
+                                                    "code": 404,
+                                                    "status": "success",
+                                                    "message": "Todo not found!"
+                                                },
+                                                "data": {
+                                                    "Todo": []
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "message": "Unauthenticated."
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
             "post": {
                 "tags": [
                     "Todos"
@@ -489,7 +634,7 @@
                                                 "data": {
                                                     "todo": {
                                                         "id": 2,
-                                                        "user_id": 1,
+                                                        "Todo_id": 1,
                                                         "name": "Todo teste",
                                                         "updated_at": "2024-07-29T20:17:01.000000Z",
                                                         "created_at": "2024-07-29T20:17:01.000000Z"

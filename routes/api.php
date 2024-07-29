@@ -28,7 +28,7 @@ Route::controller(TodoController::class)->group(function () {
 
     Route::post('/todos', 'store')->middleware('auth:sanctum');
     Route::get('/todos', 'todos')->middleware('auth:sanctum');
-    Route::get('/todos/{todo}', 'todo')->middleware('auth:sanctum');
-    Route::put('/todos/{todo}', 'update')->middleware('auth:sanctum');
-    Route::delete('/todos/{todo}', 'delete')->middleware('auth:sanctum');
+    Route::get('/todos/{id}', 'todo')->middleware('auth:sanctum');
+    Route::put('/todos', 'update')->middleware('auth:sanctum');
+    Route::delete('/todos/{id}', 'delete')->middleware('auth:sanctum');
 });

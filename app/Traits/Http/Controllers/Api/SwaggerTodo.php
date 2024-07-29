@@ -45,7 +45,7 @@ trait SwaggerTodo
                             'data' => [
                                 'todo' => [
                                     "id" => 2,
-                                    "user_id" => 1,
+                                    "Todo_id" => 1,
                                     "name" => "Todo teste",
                                     "updated_at" => "2024-07-29T20:17:01.000000Z",
                                     "created_at" => "2024-07-29T20:17:01.000000Z",
@@ -104,7 +104,7 @@ trait SwaggerTodo
                                 "todo" => [
                                     [
                                         "id" => 1,
-                                        "user_id" => 1,
+                                        "Todo_id" => 1,
                                         "name" => "Todo teste",
                                         "status" => 1,
                                         "created_at" => "2024-07-29T20:13:35.000000Z",
@@ -151,6 +151,165 @@ trait SwaggerTodo
         )
     ]
     private function swagger_all_todos(): void
+    {
+    }
+    // #[
+    //     OA\Get(
+    //         path: '/api/todos',
+    //         description: 'Get Todo',
+    //         tags: ['Todos'],
+    //         security: [
+    //             [
+    //                 'bearerAuth' => []
+    //             ]
+    //         ],
+    //         requestBody: new  OA\RequestBody(
+    //             required: true,
+    //             content: new OA\MediaType(
+    //                 mediaType: 'application/json',
+    //                 schema: new OA\Schema(
+    //                     required: ['id'],
+    //                     properties: [new OA\Property(property: 'id', description: 'Todo ID', type: 'int')]
+    //                 ),
+    //                 example: [
+    //                     'id' => 1
+    //                 ]
+    //             )
+    //         ),
+    //         responses: [
+    //             new OA\Response(response: Response::HTTP_OK, description: 'Todo successfully!', content: new OA\JsonContent(
+    //                 properties: [
+    //                     new OA\Property(property: 'data', type: 'object', example: [
+    //                         'meta' => [
+    //                             'code' => Response::HTTP_OK,
+    //                             'status' => 'success',
+    //                             'message' => 'Todo successfully!',
+    //                         ],
+    //                         'data' => [
+    //                             'Todo' => []
+    //                         ],
+    //                     ])
+    //                 ]
+    //             )),
+    //             new OA\Response(response: Response::HTTP_UNPROCESSABLE_ENTITY, description: "Validation errors", content: new OA\JsonContent(
+    //                 properties: [
+    //                     new OA\Property(property: 'data', type: 'object', example: [
+    //                         "success" => false,
+    //                         "message" => "Validation errors",
+    //                         "data" => [
+    //                             "id" => [
+    //                                 "The id field is required."
+    //                             ],
+    //                         ]
+    //                     ])
+    //                 ]
+    //             )),
+    //             new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'User not Found', content: new OA\JsonContent(
+    //                 properties: [
+    //                     new OA\Property(property: 'data', type: 'object', example: [
+    //                         'message' => 'Error! User not found!'
+    //                     ])
+    //                 ]
+    //             )),
+
+    //         ]
+    //     )
+    // ]
+    private function swagger_todo(): void
+    {
+    }
+    #[
+        OA\Put(
+            path: '/api/todos',
+            description: 'Update Todo',
+            tags: ['Todos'],
+            security: [
+                [
+                    'bearerAuth' => []
+                ]
+            ],
+            requestBody: new OA\RequestBody(
+                required: true,
+                content: new OA\MediaType(
+                    mediaType: 'application/json',
+                    schema: new OA\Schema(
+                        required: ['id', 'name'],
+                        properties: [
+                            new OA\Property(property: 'id', description: 'ID', type: 'string'),
+                            new OA\Property(property: 'name', description: 'Todo Name', type: 'string'),
+                            new OA\Property(property: 'status', description: 'Status', type: 'string'),
+                        ]
+                    ),
+                    example: [
+
+                        "id" => 1,
+                        "name" => "Todos Updated",
+                        "status" => 0,
+
+
+                    ]
+                )
+            ),
+            responses: [
+                new OA\Response(response: Response::HTTP_ACCEPTED, description: 'Todo updated successfully!', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            "meta" => [
+                                "code" => 202,
+                                "status" => "success",
+                                "message" => "Todo updated successfully!"
+                            ],
+                            "data" => [
+                                "todo" => [
+                                    "id" => 1,
+                                    "name" => "Updated Todo",
+                                    "status" => 1,
+                                    "created_at" => "2024-07-29T17:18:41.000000Z",
+                                    "updated_at" => "2024-07-29T17:53:34.000000Z"
+                                ],
+
+                            ],
+                        ]),
+                    ]
+                )),
+                new OA\Response(response: Response::HTTP_UNPROCESSABLE_ENTITY, description: "Validation errors", content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            "success" => false,
+                            "message" => "Validation errors",
+                            "data" => [
+                                "id" => [
+                                    "The id field is required."
+                                ],
+                            ]
+                        ])
+                    ]
+                )),
+                new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Todo successfully!', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            'meta' => [
+                                'code' => Response::HTTP_NOT_FOUND,
+                                'status' => 'fails',
+                                'message' => 'Todo not found!',
+                            ],
+                            'data' => [
+                                'Todo' => []
+                            ],
+                        ])
+                    ]
+                )),
+                new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Unauthenticated', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            "message" => "Unauthenticated."
+                        ])
+                    ]
+                )),
+            ]
+        )
+    ]
+    private function swagger_todo_update(): void
     {
     }
 }

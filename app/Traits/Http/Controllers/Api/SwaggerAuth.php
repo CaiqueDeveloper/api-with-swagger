@@ -153,4 +153,17 @@ trait SwaggerAuth
     private function swagger_login()
     {
     }
+    #[OA\Post(
+        path: '/api/auth/logout',
+        summary: 'Logout User',
+        tags: ['Authenticate'],
+        security: [
+            [
+                'bearerAuth' => []
+            ]
+        ],
+    )]
+    private function swagger_logout(): void
+    {
+    }
 }

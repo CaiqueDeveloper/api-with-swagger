@@ -15,173 +15,6 @@
         }
     ],
     "paths": {
-        "/api/auth/register": {
-            "post": {
-                "tags": [
-                    "Authenticate"
-                ],
-                "summary": "Register",
-                "operationId": "c7bb21a0d87049e161b8e4c9b0d909f2",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "": {
-                                        "properties": {
-                                            "name": {
-                                                "type": "string"
-                                            },
-                                            "email": {
-                                                "type": "string"
-                                            },
-                                            "password": {
-                                                "type": "string"
-                                            },
-                                            "password_confirmation": {
-                                                "type": "string"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                },
-                                "type": "object",
-                                "example": {
-                                    "name": "John Snow",
-                                    "email": "john@test.com",
-                                    "password": "johnjohn1",
-                                    "password_confirmation": "johnjohn1"
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "meta": {
-                                            "properties": {
-                                                "code": {
-                                                    "type": "number",
-                                                    "example": 200
-                                                },
-                                                "status": {
-                                                    "type": "string",
-                                                    "example": "success"
-                                                },
-                                                "message": {
-                                                    "type": "string",
-                                                    "example": null
-                                                }
-                                            },
-                                            "type": "object"
-                                        },
-                                        "data": {
-                                            "properties": {
-                                                "user": {
-                                                    "properties": {
-                                                        "id": {
-                                                            "type": "number",
-                                                            "example": 1
-                                                        },
-                                                        "name": {
-                                                            "type": "string",
-                                                            "example": "John Snow"
-                                                        },
-                                                        "email": {
-                                                            "type": "string",
-                                                            "example": "john@test.com"
-                                                        },
-                                                        "email_verified_at": {
-                                                            "type": "string",
-                                                            "example": null
-                                                        },
-                                                        "updated_at": {
-                                                            "type": "string",
-                                                            "example": "2022-06-28 06:06:17"
-                                                        },
-                                                        "created_at": {
-                                                            "type": "string",
-                                                            "example": "2022-06-28 06:06:17"
-                                                        }
-                                                    },
-                                                    "type": "object"
-                                                },
-                                                "access_token": {
-                                                    "properties": {
-                                                        "token": {
-                                                            "type": "string",
-                                                            "example": "randomtokenasfhajskfhajf398rureuuhfdshk"
-                                                        },
-                                                        "type": {
-                                                            "type": "string",
-                                                            "example": "Bearer"
-                                                        }
-                                                    },
-                                                    "type": "object"
-                                                }
-                                            },
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "meta": {
-                                            "properties": {
-                                                "code": {
-                                                    "type": "number",
-                                                    "example": 422
-                                                },
-                                                "status": {
-                                                    "type": "string",
-                                                    "example": "error"
-                                                },
-                                                "message": {
-                                                    "type": "string",
-                                                    "example": "Validation errors"
-                                                },
-                                                "data": {
-                                                    "properties": {
-                                                        "email": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "string",
-                                                                "example": "The email has already been taken."
-                                                            },
-                                                            "collectionFormat": "multi"
-                                                        }
-                                                    },
-                                                    "type": "object"
-                                                }
-                                            },
-                                            "type": "object"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "example": []
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/api/auth/login": {
             "post": {
                 "tags": [
@@ -434,6 +267,120 @@
                         "token": []
                     }
                 ]
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "Authenticate"
+                ],
+                "summary": "Store an new user",
+                "operationId": "51ffb6f0741cdfa052d160396fea0bee",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/jso": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "User name",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password",
+                                        "type": "string"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Password Confirmation",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "example": {
+                                "name": "User Teste",
+                                "email": "userteste@email.com",
+                                "password": "user_teste_password",
+                                "password_confirmation": "user_teste_password"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "meta": {
+                                                    "code": 201,
+                                                    "status": "success",
+                                                    "message": "User created successfully!"
+                                                },
+                                                "user": {
+                                                    "name": "User Teste",
+                                                    "email": "email@email.com",
+                                                    "updated_at": "2024-07-28T21:49:06.000000Z",
+                                                    "created_at": "2024-07-28T21:49:06.000000Z",
+                                                    "id": 1
+                                                },
+                                                "access_token": {
+                                                    "token": "2|yubvLPyxjWvMaSRZ3bM1A60llv4r0En9DtVlq3gw74a22b65",
+                                                    "type": "Bearer"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "success": false,
+                                                "message": "Validation errors",
+                                                "data": {
+                                                    "name": [
+                                                        "The name field is required."
+                                                    ],
+                                                    "email": [
+                                                        "The email field is required."
+                                                    ],
+                                                    "password": [
+                                                        "The password field is required."
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },

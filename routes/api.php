@@ -11,17 +11,17 @@ Route::get('/user', function (Request $request) {
 
 Route::controller(AuthController::class)->group(function () {
 
-    Route::post('/auth/login', [AuthController::class, 'login']);
-    Route::post('/auth/register', [AuthController::class, 'register']);
-    Route::post('/auth/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-    Route::get('/auth/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+    Route::post('/auth/login',  'login');
+    Route::post('/auth/register',  'register');
+    Route::post('/auth/logout',  'logout')->middleware('auth:sanctum');
+    Route::get('/auth/me',  'me')->middleware('auth:sanctum');
 });
 
 Route::controller(UserController::class)->group(function () {
 
-    Route::get('/users', [UserController::class, 'all']);
-    Route::get('/users/{user}', [UserController::class, 'show']);
-    Route::post('/users', [UserController::class, 'create']);
-    Route::put('/users', [UserController::class, 'update']);
-    Route::delete('/users', [UserController::class, 'delete']);
-})->middleware('auth:sanctum');
+    Route::get('/users', 'all')->middleware('auth:sanctum');
+    Route::get('/users/{user}', 'show')->middleware('auth:sanctum');
+    Route::post('/users', 'create')->middleware('auth:sanctum');
+    Route::put('/users', 'update')->middleware('auth:sanctum');
+    Route::delete('/users', 'delete')->middleware('auth:sanctum');
+});

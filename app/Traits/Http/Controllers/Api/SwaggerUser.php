@@ -4,6 +4,7 @@ namespace App\Traits\Http\Controllers\Api;
 
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;
+use OpenApi\Attributes\RequestBody;
 
 trait SwaggerUser
 {
@@ -64,13 +65,86 @@ trait SwaggerUser
                                 "token" => "20|Iu1Ukr9PAgWCSzWbpoJm7O6lcxDk3bVU1PFFcEFz0842a61c",
                                 "type" => "Bearer"
                             ],
+                        ]),
+                    ]
+                )),
+                new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Unauthenticated', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            "message" => "Unauthenticated."
                         ])
                     ]
-                ))
+                )),
             ]
         )
     ]
     private function swagger_user_update(): void
+    {
+    }
+    #[
+        OA\Delete(
+            path: '/api/user',
+            description: 'Delete user',
+            tags: ['User'],
+            security: [
+                [
+                    'bearerAuth' => []
+                ]
+            ],
+            requestBody: new  RequestBody(
+                required: true,
+                content: new OA\MediaType(
+                    mediaType: 'application/json',
+                    schema: new OA\Schema(
+                        required: ['id'],
+                        properties: [new OA\Property(property: 'id', description: 'User ID', type: 'int')]
+                    ),
+                    example: [
+                        'id' => 1
+                    ]
+                )
+            ),
+            responses: [
+                new OA\Response(response: Response::HTTP_OK, description: 'User deleted successfully!', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            'meta' => [
+                                'code' => Response::HTTP_OK,
+                                'status' => 'success',
+                                'message' => 'User deleted successfully!',
+                            ],
+                            'data' => [
+                                'user' => []
+                            ],
+                            'access_token' => [],
+                        ])
+                    ]
+                )),
+                new OA\Response(response: Response::HTTP_UNPROCESSABLE_ENTITY, description: "Validation errors", content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            "success" => false,
+                            "message" => "Validation errors",
+                            "data" => [
+                                "id" => [
+                                    "The id field is required."
+                                ],
+                            ]
+                        ])
+                    ]
+                )),
+                new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'User not Found', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            'message' => 'Error! User not found!'
+                        ])
+                    ]
+                )),
+
+            ]
+        )
+    ]
+    private function swagger_user_delete(): void
     {
     }
 }

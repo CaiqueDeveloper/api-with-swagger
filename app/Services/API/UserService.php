@@ -39,4 +39,37 @@ class UserService
             ],
         ], Response::HTTP_ACCEPTED);
     }
+    public static function delete(int $id): JsonResponse
+    {
+
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json([
+                'meta' => [
+                    'code' => Response::HTTP_NOT_FOUND,
+                    'status' => 'fails',
+                    'message' => 'User not found!',
+                ],
+                'data' => [
+                    'user' => []
+                ],
+                'access_token' => [],
+            ], Response::HTTP_NOT_FOUND);
+        }
+        
+        $user->delete();
+
+        return response()->json([
+            'meta' => [
+                'code' => Response::HTTP_OK,
+                'status' => 'success',
+                'message' => 'User deleted successfully!',
+            ],
+            'data' => [
+                'user' => []
+            ],
+            'access_token' => [],
+        ], Response::HTTP_OK);
+    }
 }

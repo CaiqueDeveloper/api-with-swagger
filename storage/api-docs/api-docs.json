@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Api With Swagger",
-        "description": "Esta é uma API com objetivo de aprender mais sobre uso do swagger",
+        "description": "Esta é uma API com objetivo de aprender mais sobre uso do swagger em criação de documentação para aplicações laravel",
         "contact": {
             "email": "caiquebispodanet86@gmail.com"
         },
@@ -424,6 +424,128 @@
                                                     "token": "20|Iu1Ukr9PAgWCSzWbpoJm7O6lcxDk3bVU1PFFcEFz0842a61c",
                                                     "type": "Bearer"
                                                 }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "message": "Unauthenticated."
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Delete user",
+                "operationId": "b23821fd8fe5edb85f2d1d6c16ed17a8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "User ID",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "example": {
+                                "id": 1
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User deleted successfully!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "meta": {
+                                                    "code": 200,
+                                                    "status": "success",
+                                                    "message": "User deleted successfully!"
+                                                },
+                                                "data": {
+                                                    "user": []
+                                                },
+                                                "access_token": []
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "success": false,
+                                                "message": "Validation errors",
+                                                "data": {
+                                                    "id": [
+                                                        "The id field is required."
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "message": "Error! User not found!"
                                             }
                                         }
                                     },

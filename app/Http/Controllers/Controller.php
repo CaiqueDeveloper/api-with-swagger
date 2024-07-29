@@ -8,7 +8,7 @@ use OpenApi\Attributes as OA;
     OA\Info(
         title: "Api With Swagger",
         version: "1.0.0",
-        description: 'Esta é uma API com objetivo de aprender mais sobre uso do swagger',
+        description: 'Esta é uma API com objetivo de aprender mais sobre uso do swagger em criação de documentação para aplicações laravel',
     ),
 
     OA\Contact(email: 'caiquebispodanet86@gmail.com'),

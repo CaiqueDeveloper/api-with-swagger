@@ -311,7 +311,7 @@ trait SwaggerTodo
     }
     #[
         OA\Delete(
-            path: '/api/todos',
+            path: '/api/todos/{id}',
             description: 'Delete todo',
             tags: ['Todos'],
             security: [
@@ -319,17 +319,11 @@ trait SwaggerTodo
                     'bearerAuth' => []
                 ]
             ],
+            parameters: [new OA\Parameter(name: 'id', in: 'query', required: true, description: ' Delete todo')],
             requestBody: new  OA\RequestBody(
-                required: true,
                 content: new OA\MediaType(
                     mediaType: 'application/json',
-                    schema: new OA\Schema(
-                        required: ['id'],
-                        properties: [new OA\Property(property: 'id', description: 'User ID', type: 'int')]
-                    ),
-                    example: [
-                        'id' => 1
-                    ]
+
                 )
             ),
             responses: [

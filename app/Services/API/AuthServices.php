@@ -93,6 +93,24 @@ class AuthServices
             'data' => [],
         ], Response::HTTP_ACCEPTED);
     }
+    public static function me(): JsonResponse
+    {
+        $user = Auth::user();
+
+        return response()->json([
+            'meta' => [
+                'code' => Response::HTTP_ACCEPTED,
+                'status' => 'success',
+            ],
+            'data' => [
+                'user' => $user
+            ],
+            'access_token' => [
+                'token' => $user->createToken($user->email)->plainTextToken,
+                'type' => 'Bearer'
+            ],
+        ], Response::HTTP_ACCEPTED);
+    }
     private static function revokingTokens(?int $id = null): void
     {
         if ($id) {

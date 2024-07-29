@@ -279,6 +279,74 @@
                     }
                 ]
             }
+        },
+        "/api/auth/me": {
+            "get": {
+                "tags": [
+                    "Authenticate"
+                ],
+                "summary": "Return data authenticated user",
+                "operationId": "a731f2c57fde4632914e0bac1b15fd81",
+                "responses": {
+                    "202": {
+                        "description": "Successful return data use authenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "meta": {
+                                                    "code": 202,
+                                                    "status": "success"
+                                                },
+                                                "data": {
+                                                    "user": {
+                                                        "id": 1,
+                                                        "name": "User Teste",
+                                                        "email": "email@email.com",
+                                                        "created_at": "2024-07-27T15:39:28.000000Z",
+                                                        "updated_at": "2024-07-28T21:49:06.000000Z"
+                                                    }
+                                                },
+                                                "access_token": {
+                                                    "token": "17|QJmAJPmZPxxcAFCp8XgfgQf6GzEghBvTEgkgEHrAf7040d89",
+                                                    "type": "Bearer"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "message": "Unauthenticated."
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {

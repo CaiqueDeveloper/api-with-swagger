@@ -119,7 +119,6 @@ trait SwaggerAuth
                                 "statusCode" => Response::HTTP_ACCEPTED,
                                 "message" => "User has been logged successfully.",
                                 "data" => [
-                                    "id" => 7,
                                     "id" => 1,
                                     "name" => "User Teste",
                                     "email" => "email@email.com",
@@ -187,6 +186,52 @@ trait SwaggerAuth
         )
     ]
     private function swagger_logout(): void
+    {
+    }
+    #[OA\Get(
+        path: '/api/auth/me',
+        summary: 'Return data authenticated user',
+        tags: ['Authenticate'],
+        security: [
+            [
+                'bearerAuth' => []
+            ]
+        ],
+        responses: [
+
+            new OA\Response(response: Response::HTTP_ACCEPTED, description: 'Successful return data use authenticated', content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: 'data', type: 'object', example: [
+                        'meta' => [
+                            'code' => Response::HTTP_ACCEPTED,
+                            'status' => 'success',
+                        ],
+                        'data' => [
+                            'user' => [
+                                "id" => 1,
+                                "name" => "User Teste",
+                                "email" => "email@email.com",
+                                "created_at" => "2024-07-27T15:39:28.000000Z",
+                                "updated_at" => "2024-07-28T21:49:06.000000Z",
+                            ]
+                        ],
+                        'access_token' => [
+                            'token' => "17|QJmAJPmZPxxcAFCp8XgfgQf6GzEghBvTEgkgEHrAf7040d89",
+                            'type' => 'Bearer'
+                        ],
+                    ])
+                ]
+            )),
+            new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Unauthenticated', content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: 'data', type: 'object', example: [
+                        "message" => "Unauthenticated."
+                    ])
+                ]
+            )),
+        ]
+    )]
+    private function swagger_me(): void
     {
     }
 }

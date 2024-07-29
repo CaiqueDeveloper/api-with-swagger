@@ -32,4 +32,8 @@ class AuthController extends Controller
     {
         return AuthServices::logout();
     }
+    public function me(): JsonResponse
+    {
+        return AuthServices::me();
+    }
 }

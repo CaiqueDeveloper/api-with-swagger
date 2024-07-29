@@ -80,6 +80,23 @@ class AuthServices
             ],
         ], Response::HTTP_ACCEPTED);
     }
+    public static function logout(): JsonResponse
+    {
+
+
+        static::revokingTokens();
+
+        Auth::logout();
+
+        return response()->json([
+            'meta' => [
+                'code' => Response::HTTP_ACCEPTED,
+                'status' => 'success',
+                'message' => 'Successfully logged out',
+            ],
+            'data' => [],
+        ], Response::HTTP_ACCEPTED);
+    }
     private static function revokingTokens(?int $id = null): void
     {
         if ($id) {

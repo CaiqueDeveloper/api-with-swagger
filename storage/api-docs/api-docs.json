@@ -11,7 +11,7 @@
     "servers": [
         {
             "url": "http://localhost:8001",
-            "description": "API Server"
+            "description": "production server"
         }
     ],
     "paths": {
@@ -340,15 +340,109 @@
                     }
                 }
             }
+        },
+        "/api/auth/logout": {
+            "post": {
+                "tags": [
+                    "Authenticate"
+                ],
+                "summary": "Logout",
+                "operationId": "df9bdc6c7a6d9f20b983526b2ec0f698",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {}
+                                },
+                                "type": "object",
+                                "example": []
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Successfully logged out"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": []
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 422
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "error"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Unauthenticated."
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": []
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
         }
     },
     "components": {
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",
-                "name": "bearerAuth",
+                "name": "Authorization",
                 "in": "header",
-                "bearerFormat": "JWT",
                 "scheme": "bearer"
             }
         }

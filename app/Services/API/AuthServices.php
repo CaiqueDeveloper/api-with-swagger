@@ -111,7 +111,7 @@ class AuthServices
             ],
         ], Response::HTTP_ACCEPTED);
     }
-    private static function revokingTokens(?int $id = null): void
+    public static function revokingTokens(?int $id = null): void
     {
         if ($id) {
             Auth::user()->tokens('id', $id)->delete();

@@ -19,9 +19,6 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(UserController::class)->group(function () {
 
-    Route::get('/users', 'all')->middleware('auth:sanctum');
-    Route::get('/users/{user}', 'show')->middleware('auth:sanctum');
-    Route::post('/users', 'create')->middleware('auth:sanctum');
-    Route::put('/users', 'update')->middleware('auth:sanctum');
-    Route::delete('/users', 'delete')->middleware('auth:sanctum');
+    Route::put('/user', 'update')->middleware('auth:sanctum');
+    Route::delete('/user', 'delete')->middleware('auth:sanctum');
 });

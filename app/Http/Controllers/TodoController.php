@@ -15,8 +15,9 @@ class TodoController extends Controller
 
         return TodoService::store($validated);
     }
-    public function todos()
+    public function todos(): JsonResponse
     {
+        return TodoService::all();
     }
     public function todo()
     {

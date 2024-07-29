@@ -74,4 +74,83 @@ trait SwaggerTodo
     private function swagger_store_todo(): void
     {
     }
+    #[
+        OA\Get(
+            path: '/api/todos',
+            description: 'List All todos',
+            tags: ['Todos'],
+            security: [
+                [
+                    'bearerAuth' => []
+                ]
+            ],
+            requestBody: new OA\RequestBody(
+                content: new OA\MediaType(
+                    mediaType: 'application/json',
+
+                )
+            ),
+            responses: [
+
+                new OA\Response(response: Response::HTTP_ACCEPTED, description: 'List all todos successfully!', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            "meta" => [
+                                "code" => Response::HTTP_ACCEPTED,
+                                "status" => "success",
+                                "message" => "List all todos successfully!"
+                            ],
+                            "data" => [
+                                "todo" => [
+                                    [
+                                        "id" => 1,
+                                        "user_id" => 1,
+                                        "name" => "Todo teste",
+                                        "status" => 1,
+                                        "created_at" => "2024-07-29T20:13:35.000000Z",
+                                        "updated_at" => "2024-07-29T20:13:35.000000Z"
+                                    ],
+                                    [
+                                        "id" => 2,
+                                        "user_id" => 1,
+                                        "name" => "Todo teste 1",
+                                        "status" => 1,
+                                        "created_at" => "2024-07-29T20:17:01.000000Z",
+                                        "updated_at" => "2024-07-29T20:17:01.000000Z"
+                                    ],
+                                    [
+                                        "id" => 3,
+                                        "user_id" => 1,
+                                        "name" => "New Todos",
+                                        "status" => 1,
+                                        "created_at" => "2024-07-29T20:38:20.000000Z",
+                                        "updated_at" => "2024-07-29T20:38:20.000000Z"
+                                    ]
+                                ]
+                            ]
+                        ])
+                    ]
+
+                )),
+                new OA\Response(response: Response::HTTP_NO_CONTENT, description: 'List all todos successfully!', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            "meta" => [
+                                "code" => Response::HTTP_NO_CONTENT,
+                                "status" => "success",
+                                "message" => "List all todos successfully!"
+                            ],
+                            "data" => [
+                                "todo" => []
+                            ]
+                        ])
+                    ]
+
+                )),
+            ]
+        )
+    ]
+    private function swagger_all_todos(): void
+    {
+    }
 }

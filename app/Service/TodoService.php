@@ -21,10 +21,25 @@ class TodoService
             'meta' => [
                 'code' => Response::HTTP_CREATED,
                 'status' => 'success',
-                'message' => 'Todo updated successfully!',
+                'message' => 'Todo created successfully!',
             ],
             'data' => [
                 'todo' => $todo
+            ],
+        ], Response::HTTP_CREATED);
+    }
+    public static function all(): JsonResponse
+    {
+        $todos = Auth::user()->todos;
+
+        return response()->json([
+            'meta' => [
+                'code' => Response::HTTP_CREATED,
+                'status' => 'success',
+                'message' => 'List all todos successfully!',
+            ],
+            'data' => [
+                'todo' => $todos
             ],
         ], Response::HTTP_CREATED);
     }

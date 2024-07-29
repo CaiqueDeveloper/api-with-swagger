@@ -678,33 +678,26 @@
                         "bearerAuth": []
                     }
                 ]
-            },
-            "delete": {
+            }
+        },
+        "/api/todos/{id}": {
+            "get": {
                 "tags": [
                     "Todos"
                 ],
-                "description": "Delete todo",
-                "operationId": "d1bad2b2c6eb95ddedd9a9735a6845d8",
+                "description": "Get todo",
+                "operationId": "cd8f0f7a30687692b863ade7f9af8d6a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": " Get todo",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
-                    "required": true,
                     "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "id"
-                                ],
-                                "properties": {
-                                    "id": {
-                                        "description": "User ID",
-                                        "type": "integer"
-                                    }
-                                },
-                                "type": "object"
-                            },
-                            "example": {
-                                "id": 1
-                            }
-                        }
+                        "application/json": {}
                     }
                 },
                 "responses": {
@@ -782,20 +775,18 @@
                         "bearerAuth": []
                     }
                 ]
-            }
-        },
-        "/api/todos/{id}": {
-            "get": {
+            },
+            "delete": {
                 "tags": [
                     "Todos"
                 ],
-                "description": "Get todo",
-                "operationId": "cd8f0f7a30687692b863ade7f9af8d6a",
+                "description": "Delete todo",
+                "operationId": "951abfd9a23484a769622f6db80b2185",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "query",
-                        "description": " Get todo",
+                        "description": " Delete todo",
                         "required": true
                     }
                 ],

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\TodoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,13 @@ Route::controller(UserController::class)->group(function () {
 
     Route::put('/user', 'update')->middleware('auth:sanctum');
     Route::delete('/user', 'delete')->middleware('auth:sanctum');
+});
+
+Route::controller(TodoController::class)->group(function () {
+
+    Route::post('/todos', 'store')->middleware('auth:sanctum');
+    Route::get('/todos', 'todos')->middleware('auth:sanctum');
+    Route::get('/todos/{todo}', 'todo')->middleware('auth:sanctum');
+    Route::put('/todos/{todo}', 'update')->middleware('auth:sanctum');
+    Route::delete('/todos/{todo}', 'delete')->middleware('auth:sanctum');
 });

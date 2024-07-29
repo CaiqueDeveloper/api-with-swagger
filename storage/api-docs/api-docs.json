@@ -11,7 +11,7 @@
     "servers": [
         {
             "url": "http://localhost:8001",
-            "description": "production server"
+            "description": "API Server"
         }
     ],
     "paths": {
@@ -441,8 +441,9 @@
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",
-                "name": "Authorization",
+                "name": "bearerAuth",
                 "in": "header",
+                "bearerFormat": "JWT",
                 "scheme": "bearer"
             }
         }

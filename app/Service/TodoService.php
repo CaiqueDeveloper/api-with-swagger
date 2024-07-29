@@ -106,4 +106,37 @@ class TodoService
             ],
         ], Response::HTTP_OK);
     }
+    public static function delete(int $id): JsonResponse
+    {
+
+        $todo = Todo::find($id);
+
+        if (!$todo) {
+            return response()->json([
+                'meta' => [
+                    'code' => Response::HTTP_NOT_FOUND,
+                    'status' => 'fails',
+                    'message' => 'Todo not found!',
+                ],
+                'data' => [
+                    'todo' => []
+                ],
+                'access_token' => [],
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        $todo->delete();
+
+        return response()->json([
+            'meta' => [
+                'code' => Response::HTTP_OK,
+                'status' => 'success',
+                'message' => 'Todo deleted successfully!',
+            ],
+            'data' => [
+                'Todo' => []
+            ],
+            'access_token' => [],
+        ], Response::HTTP_OK);
+    }
 }

@@ -549,7 +549,7 @@
                                             "example": {
                                                 "meta": {
                                                     "code": 404,
-                                                    "status": "success",
+                                                    "status": "fails",
                                                     "message": "Todo not found!"
                                                 },
                                                 "data": {
@@ -664,6 +664,110 @@
                                                         "The name field is required."
                                                     ]
                                                 }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Todos"
+                ],
+                "description": "Delete todo",
+                "operationId": "d1bad2b2c6eb95ddedd9a9735a6845d8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "User ID",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "example": {
+                                "id": 1
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Todo deleted successfully!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "meta": {
+                                                    "code": 200,
+                                                    "status": "success",
+                                                    "message": "Todo deleted successfully!"
+                                                },
+                                                "data": {
+                                                    "user": []
+                                                },
+                                                "access_token": []
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "success": false,
+                                                "message": "Validation errors",
+                                                "data": {
+                                                    "id": [
+                                                        "The id field is required."
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Todo not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": {
+                                                "message": "Error! Todo not found!"
                                             }
                                         }
                                     },

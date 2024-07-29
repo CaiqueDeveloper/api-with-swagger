@@ -37,8 +37,10 @@ class TodoController extends Controller
 
         return TodoService::update($payload);
     }
-    public function delete(IdTodoRequest $request)
+    public function delete(IdTodoRequest $request): JsonResponse
     {
-        dd($request->validated());
+        $validated = $request->validated();
+
+        return TodoService::delete($validated['id']);
     }
 }

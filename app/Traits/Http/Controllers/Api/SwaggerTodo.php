@@ -312,4 +312,70 @@ trait SwaggerTodo
     private function swagger_todo_update(): void
     {
     }
+    #[
+        OA\Delete(
+            path: '/api/todos',
+            description: 'Delete todo',
+            tags: ['Todos'],
+            security: [
+                [
+                    'bearerAuth' => []
+                ]
+            ],
+            requestBody: new  OA\RequestBody(
+                required: true,
+                content: new OA\MediaType(
+                    mediaType: 'application/json',
+                    schema: new OA\Schema(
+                        required: ['id'],
+                        properties: [new OA\Property(property: 'id', description: 'User ID', type: 'int')]
+                    ),
+                    example: [
+                        'id' => 1
+                    ]
+                )
+            ),
+            responses: [
+                new OA\Response(response: Response::HTTP_OK, description: 'Todo deleted successfully!', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            'meta' => [
+                                'code' => Response::HTTP_OK,
+                                'status' => 'success',
+                                'message' => 'Todo deleted successfully!',
+                            ],
+                            'data' => [
+                                'user' => []
+                            ],
+                            'access_token' => [],
+                        ])
+                    ]
+                )),
+                new OA\Response(response: Response::HTTP_UNPROCESSABLE_ENTITY, description: "Validation errors", content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            "success" => false,
+                            "message" => "Validation errors",
+                            "data" => [
+                                "id" => [
+                                    "The id field is required."
+                                ],
+                            ]
+                        ])
+                    ]
+                )),
+                new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Todo not Found', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            'message' => 'Error! Todo not found!'
+                        ])
+                    ]
+                )),
+
+            ]
+        )
+    ]
+    private function swagger_user_delete(): void
+    {
+    }
 }

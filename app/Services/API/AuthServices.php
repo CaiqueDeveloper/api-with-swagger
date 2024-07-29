@@ -82,11 +82,7 @@ class AuthServices
     }
     public static function logout(): JsonResponse
     {
-
-
         static::revokingTokens();
-
-        Auth::logout();
 
         return response()->json([
             'meta' => [

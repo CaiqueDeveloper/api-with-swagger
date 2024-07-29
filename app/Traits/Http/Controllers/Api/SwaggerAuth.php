@@ -153,16 +153,39 @@ trait SwaggerAuth
     private function swagger_login()
     {
     }
-    #[OA\Post(
-        path: '/api/auth/logout',
-        summary: 'Logout User',
-        tags: ['Authenticate'],
-        security: [
-            [
-                'bearerAuth' => []
+    #[
+        OA\Post(
+            path: '/api/auth/logout',
+            summary: 'Logout User',
+            tags: ['Authenticate'],
+            security: [
+                [
+                    'bearerAuth' => []
+                ]
+            ],
+            responses: [
+                new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Unauthenticated', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            "message" => "Unauthenticated."
+                        ])
+                    ]
+                )),
+                new OA\Response(response: Response::HTTP_ACCEPTED, description: 'Successfully logged out', content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'data', type: 'object', example: [
+                            'meta' => [
+                                'code' => Response::HTTP_ACCEPTED,
+                                'status' => 'success',
+                                'message' => 'Successfully logged out',
+                            ],
+                            'data' => [],
+                        ])
+                    ]
+                )),
             ]
-        ],
-    )]
+        )
+    ]
     private function swagger_logout(): void
     {
     }

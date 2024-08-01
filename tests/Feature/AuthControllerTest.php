@@ -57,7 +57,24 @@ it('verify if is validation error in attempt login user sending empty form data'
                 ->etc()
         );
 });
-todo('verify if user authenticate successful');
+it('verify if user authenticate successful', function () {
+
+    $response = $this->postJson('/api/auth/login', [
+        'email' => 'email@teste.com',
+        'password' => 'password_teste',
+    ]);
+
+    $response->assertValid();
+
+    $response->assertJson(
+        fn (AssertableJson $json) =>
+        $json->hasAll(['meta', 'data', 'access_token'])
+            ->where('meta.code', 202)
+            ->where('meta.message', 'Login success.')
+            ->where('data.user.email', 'email@teste.com')
+            ->etc()
+    );
+});
 
 todo('the route logout exists');
 todo('verify if user logout successful');

@@ -11,6 +11,8 @@
 
 Eu me deparei em um senário no qual após 4 anos trabalhando com dev PHP/Laravel, eu não sabia documentar uma API usando swagger, então resolvi me aventurar e aprender de uma vez por todas, me desafie criando essa mini api para pôr em prática tudo que aprendi, meu próximo passo agora vai ser integrar a bateria de testes usado o PestPhp
 
+<p align="center"><img src="https://i.postimg.cc/mrrvCn3C/Imagem-do-Whats-App-de-2024-08-01-s-19-03-02-b41159e4.jpg" width="400" alt="Doc "></p>
+
 ## Dependências
 
 - [L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger).
@@ -42,7 +44,7 @@ Eu me deparei em um senário no qual após 4 anos trabalhando com dev PHP/Larave
    ```bash
    ./vendor/bin/sail up ou sail up
    ```
-   
+
 4. Agora suba as migrations
 
    ```bash

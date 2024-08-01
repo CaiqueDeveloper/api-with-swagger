@@ -41,7 +41,7 @@ Eu me deparei em um senário no qual após 4 anos trabalhando com dev PHP/Larave
 ###Test
 
 - [x] Register
-- [] login
+- [x] login
 - [] Logout
 - [] Register User
 - [] Update User

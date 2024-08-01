@@ -40,7 +40,7 @@ Eu me deparei em um senário no qual após 4 anos trabalhando com dev PHP/Larave
 
 ###Test
 
-- [] Register
+- [x] Register
 - [] login
 - [] Logout
 - [] Register User

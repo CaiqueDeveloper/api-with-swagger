@@ -40,7 +40,11 @@ it('verify if user registered successful', function () {
     ]);
 });
 
-todo('the route login exists');
+it('the route login exists and return status code 422', function () {
+    
+    $response = $this->postJson('/api/auth/login', [])
+        ->assertStatus(422);
+});
 todo('verify if is validation error in attempt login user sending empty form data');
 todo('verify if user authenticate successful');
 

@@ -15,22 +15,23 @@ Eu me deparei em um senário no qual após 4 anos trabalhando com dev PHP/Larave
 
 - [L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger).
 - [Swagger-PHP](https://zircote.github.io/swagger-php/)
+- [Pest](https://pestphp.com/)
 
 ## Funcionalidade do sistema
 
-###Auth
+### Auth
 
 - [x] Register
 - [x] login
 - [x] Logout
 
-###User
+### User
 
 - [x] Register User
 - [x] Update User
 - [x] Delete User
 
-###Todos
+### Todos
 
 - [x] Register Todo
 - [x] Get All Todos
@@ -38,11 +39,11 @@ Eu me deparei em um senário no qual após 4 anos trabalhando com dev PHP/Larave
 - [x] Update Todo
 - [x] Delete Todo
 
-###Test
+### Test
 
 - [x] Register
 - [x] login
-- [] Logout
+- [x] Logout
 - [] Register User
 - [] Update User
 - [] Delete User

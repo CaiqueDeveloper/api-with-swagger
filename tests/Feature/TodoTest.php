@@ -31,9 +31,10 @@ test('verifique se somente usuários autenticados podem ver todas as tarefas cad
         ->assertStatus(201)
         ->assertJson(
             fn (AssertableJson $json) =>
-            $json->where('meta.code', 201)
-                ->where('meta.success', true)
-                ->where('meta.message', 'Todo updated successfully!')
+            $json->hasAny(['meta', 'data'])
+                ->where('meta.code', 201)
+                ->where('meta.status', 'success')
+                ->where('meta.message', 'Todo created successfully!')
                 ->etc()
         );
 });

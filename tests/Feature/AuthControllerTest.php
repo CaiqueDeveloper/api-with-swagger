@@ -76,5 +76,9 @@ it('verify if user authenticate successful', function () {
     );
 });
 
-todo('the route logout exists');
+it('the route logout exists and return error unauthorized', function () {
+
+    $response = $this->postJson('/api/auth/logout')
+        ->assertUnauthorized();
+});
 todo('verify if user logout successful');

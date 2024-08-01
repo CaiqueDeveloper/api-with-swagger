@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 
 it('the route register exists and return status code 422', function () {
@@ -20,7 +21,24 @@ it('verify if is validation error in attempt register user sending empty form da
                 ->etc()
         );
 });
-todo('verify if user registered successful');
+it('verify if user registered successful', function () {
+
+
+    $response = $this->postJson('/api/auth/register', [
+        'name' => 'User Teste',
+        'email' => 'email@teste.com',
+        'password' => 'password_teste',
+        'password_confirmation' => 'password_teste'
+
+    ]);
+
+    $response->assertValid();
+
+    $this->assertDatabaseHas(User::class, [
+        'name' => 'User Teste',
+        'email' => 'email@teste.com',
+    ]);
+});
 
 todo('the route login exists');
 todo('verify if is validation error in attempt login user sending empty form data');

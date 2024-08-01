@@ -17,6 +17,38 @@ Eu me deparei em um senário no qual após 4 anos trabalhando com dev PHP/Larave
 - [Swagger-PHP](https://zircote.github.io/swagger-php/)
 - [Pest](https://pestphp.com/)
 
+### Requisitos
+
+- PHP (>= 8.2)
+- Composer
+- Docker
+
+### Instalação
+
+1. Clone esse repositorio em sua máquina local
+
+   ```bash
+   git clone https://github.com/CaiqueDeveloper/api-with-swagger.git
+   ```
+
+2. Na pasta do projeto excute o composer
+
+   ```bash
+   composer install
+   ```
+
+3. Agora suba os container usando o sail
+
+   ```bash
+   ./vendor/bin/sail up ou sail up
+   ```
+   
+4. Agora suba as migrations
+
+   ```bash
+      sail artisan migrate
+   ```
+
 ## Funcionalidade do sistema
 
 ### Auth
@@ -52,33 +84,6 @@ Eu me deparei em um senário no qual após 4 anos trabalhando com dev PHP/Larave
 - [] Get Todo
 - [] Update Todo
 - [] Delete Todo
-
-### Requisitos
-
-- PHP (>= 8.2)
-- Composer
-- Docker
-
-### Instalação
-
-1. Clone esse repositorio em sua máquina local
-
-   ```bash
-   git clone https://github.com/CaiqueDeveloper/api-with-swagger.git
-   ```
-
-2. Na pasta do projeto excute o composer
-
-   ```bash
-   composer install
-   ```
-
-3. Agora suba os container usando o sail
-
-   ```bash
-   ./vendor/bin/sail up ou sail up
-   ```
-
 
 ## Security Vulnerabilities
 

@@ -23,3 +23,17 @@ test('verifique se ao tentar cadastrar uma tarefa com campos vazios está sendo 
                 ->etc()
         );
 });
+test('verifique se somente usuários autenticados podem ver todas as tarefas cadastradas', function () {
+
+    Sanctum::actingAs(User::factory()->create());
+
+    $this->postJson('/api/todos', ['name' => 'Todo Test'])
+        ->assertStatus(201)
+        ->assertJson(
+            fn (AssertableJson $json) =>
+            $json->where('meta.code', 201)
+                ->where('meta.success', true)
+                ->where('meta.message', 'Todo updated successfully!')
+                ->etc()
+        );
+});

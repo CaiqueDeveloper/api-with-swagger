@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Laravel\Sanctum\Sanctum;
 
 it('the route register exists and return status code 422', function () {
 
@@ -81,4 +82,21 @@ it('the route logout exists and return error unauthorized', function () {
     $response = $this->postJson('/api/auth/logout')
         ->assertUnauthorized();
 });
-todo('verify if user logout successful');
+it('verify if user logout successful', function () {
+
+    Sanctum::actingAs(
+        User::factory()->create()
+    );
+    $response = $this->postJson('/api/auth/logout')
+        ->assertStatus(202);
+
+    $response->assertJson(
+        fn (AssertableJson $json) =>
+
+        $json->hasAny(['meta', 'data'])
+            ->where('meta.code', 202)
+            ->where('meta.status', 'success')
+            ->where('meta.message', 'Successfully logged out')
+            ->etc()
+    );
+});

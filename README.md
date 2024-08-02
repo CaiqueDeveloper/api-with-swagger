@@ -78,13 +78,13 @@ Eu me deparei em um senário no qual após 4 anos trabalhando com dev PHP/Larave
 - [x] Register
 - [x] login
 - [x] Logout
-- [] Register User
+- [x] Register User
 - [] Update User
 - [] Delete User
-- [] Register Todo
-- [] Get All Todos
-- [] Get Todo
-- [] Update Todo
+- [x] Register Todo
+- [x] Get All Todos
+- [x] Get Todo
+- [x] Update Todo
 - [] Delete Todo
 
 ## Security Vulnerabilities

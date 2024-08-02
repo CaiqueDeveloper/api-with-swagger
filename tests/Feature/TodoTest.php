@@ -94,3 +94,8 @@ test('verifique se ao tentar editar uma tarefa com campos vazios está sendo ret
                 ->etc()
         );
 });
+test('verifique se somente usuários autenticados podem deletar uma tarefa', function () {
+
+    $this->deleteJson('/api/todos/1')
+        ->assertUnauthorized();
+});

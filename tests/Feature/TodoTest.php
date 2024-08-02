@@ -60,3 +60,8 @@ test('verifique se está retornando as tarefas cadastrada ou um array vazio', fu
                 ->etc()
         );
 });
+test('verifique se somente usuários autenticados podem update uma tarefa', function () {
+
+    $this->putJson('/api/todos')
+        ->assertUnauthorized();
+});

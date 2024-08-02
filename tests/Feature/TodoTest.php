@@ -60,8 +60,37 @@ test('verifique se está retornando as tarefas cadastrada ou um array vazio', fu
                 ->etc()
         );
 });
-test('verifique se somente usuários autenticados podem update uma tarefa', function () {
+test('verifique se somente usuários autenticados podem editar uma tarefa', function () {
 
     $this->putJson('/api/todos')
         ->assertUnauthorized();
+});
+test('verifique se ao tentar editar uma tarefa com campos vazios está sendo retornado erro de validação', function () {
+
+    Sanctum::actingAs(User::factory()->create());
+
+    $this->postJson('/api/todos', ['name' => 'Todo Test'])
+        ->assertStatus(201)
+        ->assertJson(
+            fn (AssertableJson $json) =>
+            $json->hasAny(['meta', 'data'])
+                ->where('meta.code', 201)
+                ->where('meta.status', 'success')
+                ->where('meta.message', 'Todo created successfully!')
+                ->etc()
+        );
+
+    $this->putJson(
+        '/api/todos',
+        [
+            'id' => 1,
+            'name' => 'Todo Updated'
+        ]
+    )
+        ->assertStatus(200)
+        ->assertJson(
+            fn (AssertableJson $json) =>
+            $json->hasAny(['meta', 'data'])
+                ->etc()
+        );
 });

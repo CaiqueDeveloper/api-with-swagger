@@ -23,7 +23,7 @@ test('verifique se ao tentar cadastrar uma tarefa com campos vazios está sendo 
                 ->etc()
         );
 });
-test('verifique se somente usuários autenticados podem ver todas as tarefas cadastradas', function () {
+test('verifique se somente usuários autenticados podem casdastrar uma tarefas', function () {
 
     Sanctum::actingAs(User::factory()->create());
 
@@ -37,4 +37,9 @@ test('verifique se somente usuários autenticados podem ver todas as tarefas cad
                 ->where('meta.message', 'Todo created successfully!')
                 ->etc()
         );
+});
+test('verifique se somente usuários autenticados podem ver todas as tarefas cadastradas', function () {
+
+    $this->getJson('/api/todos')
+        ->assertUnauthorized();
 });

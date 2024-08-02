@@ -43,3 +43,20 @@ test('verifique se somente usuários autenticados podem ver todas as tarefas cad
     $this->getJson('/api/todos')
         ->assertUnauthorized();
 });
+test('verifique se está retornando as tarefas cadastrada ou um array vazio', function () {
+
+    Sanctum::actingAs(User::factory()->create());
+
+    $this->getJson('/api/todos')
+        ->assertStatus(201)
+        ->assertJson(
+
+            fn (AssertableJson $json) =>
+
+            $json->hasAny(['meta', 'data'])
+                ->where('meta.code', 201)
+                ->where('meta.status', 'success')
+                ->where('meta.message', 'List all todos successfully!')
+                ->etc()
+        );
+});

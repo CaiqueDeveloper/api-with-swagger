@@ -99,3 +99,15 @@ test('verifique se somente usuários autenticados podem deletar uma tarefa', fun
     $this->deleteJson('/api/todos/1')
         ->assertUnauthorized();
 });
+test('verificando se ao tentar deletar uma todo sem passar o ID um erro é retornado', function () {
+
+    Sanctum::actingAs(User::factory()->create());
+
+    $this->json('delete', '/api/todos/id=')
+        ->assertJson(
+            fn (AssertableJson $json) =>
+
+            $json->where('message', 'The id field is required.')
+                ->etc()
+        );
+});

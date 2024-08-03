@@ -111,3 +111,18 @@ test('verificando se ao tentar deletar uma todo sem passar o ID um erro é retor
                 ->etc()
         );
 });
+test('verificando uma tarefa foi deletada com sucesso', function () {
+
+    Sanctum::actingAs(User::factory()->create());
+
+    $this->json('delete', '/api/todos?id=1')
+        ->assertJson(
+            fn (AssertableJson $json) =>
+            dd($json)
+            // $json->hasAny(['meta', 'data'])
+            //     ->where('meta.code', 200)
+            //     ->where('meta.status', 'success')
+            //     ->where('meta.message', 'message')
+            //     ->etc()
+        );
+});

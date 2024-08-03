@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Api\IdTodoRequest;
 use App\Http\Requests\Api\StoreTodoRequest;
 use App\Http\Requests\Api\UpdateRequest;
+use App\Models\Todo;
 use App\Service\TodoService;
 use App\Traits\Http\Controllers\Api\SwaggerTodo;
 use Illuminate\Http\JsonResponse;
@@ -24,12 +25,10 @@ class TodoController extends Controller
     {
         return TodoService::all();
     }
-    public function todo(IdTodoRequest $request): JsonResponse
+    public function todo(?int $id): JsonResponse
     {
 
-        $validated = $request->validated();
-
-        return TodoService::todo($validated['id']);
+        return TodoService::todo($id);
     }
     public function update(UpdateRequest $request)
     {

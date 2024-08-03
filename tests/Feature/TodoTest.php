@@ -103,11 +103,21 @@ test('verificando se ao tentar deletar uma todo sem passar o ID um erro é retor
 
     Sanctum::actingAs(User::factory()->create());
 
-    $this->json('delete', '/api/todos/id=')
+    $this->json('delete', '/api/todos')
+        ->assertStatus(405);
+});
+test('verificando se ao tentar deletar uma todo que não existe um alerta está sendo retornado', function () {
+
+    Sanctum::actingAs(User::factory()->create());
+
+    $this->json('delete', '/api/todos/10')
+        ->assertStatus(404)
         ->assertJson(
             fn (AssertableJson $json) =>
-
-            $json->where('message', 'The id field is required.')
+            $json->hasAny(['meta', 'data'])
+                ->where('meta.code', 404)
+                ->where('meta.status', 'fails')
+                ->where('meta.message', 'Todo not found!')
                 ->etc()
         );
 });
@@ -115,14 +125,14 @@ test('verificando uma tarefa foi deletada com sucesso', function () {
 
     Sanctum::actingAs(User::factory()->create());
 
-    $this->json('delete', '/api/todos?id=1')
+    $this->json('delete', '/api/todos/1')
         ->assertJson(
             fn (AssertableJson $json) =>
-            dd($json)
-            // $json->hasAny(['meta', 'data'])
-            //     ->where('meta.code', 200)
-            //     ->where('meta.status', 'success')
-            //     ->where('meta.message', 'message')
-            //     ->etc()
+
+            $json->hasAny(['meta', 'data'])
+                ->where('meta.code', 200)
+                ->where('meta.status', 'success')
+                ->where('meta.message', 'Todo deleted successfully!')
+                ->etc()
         );
 });

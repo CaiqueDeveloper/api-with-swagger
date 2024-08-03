@@ -4,6 +4,8 @@ use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Sanctum\Sanctum;
 
+beforeEach(fn () => $this->user = User::factory()->create());
+
 test('verifique se somente usuários autenticados podem cadastrar uma tarefa', function () {
 
     $this->postJson('/api/todos')
@@ -11,7 +13,7 @@ test('verifique se somente usuários autenticados podem cadastrar uma tarefa', f
 });
 test('verifique se ao tentar cadastrar uma tarefa com campos vazios está sendo retornado erro de validação', function () {
 
-    Sanctum::actingAs(User::factory()->create());
+    Sanctum::actingAs($this->user);
 
     $response = $this->postJson('/api/todos', ['name' => ''])
         ->assertStatus(422)
@@ -25,7 +27,7 @@ test('verifique se ao tentar cadastrar uma tarefa com campos vazios está sendo 
 });
 test('verifique se somente usuários autenticados podem casdastrar uma tarefas', function () {
 
-    Sanctum::actingAs(User::factory()->create());
+    Sanctum::actingAs($this->user);
 
     $this->postJson('/api/todos', ['name' => 'Todo Test'])
         ->assertStatus(201)
@@ -45,7 +47,7 @@ test('verifique se somente usuários autenticados podem ver todas as tarefas cad
 });
 test('verifique se está retornando as tarefas cadastrada ou um array vazio', function () {
 
-    Sanctum::actingAs(User::factory()->create());
+    Sanctum::actingAs($this->user);
 
     $this->getJson('/api/todos')
         ->assertStatus(201)
@@ -67,7 +69,7 @@ test('verifique se somente usuários autenticados podem editar uma tarefa', func
 });
 test('verifique se ao tentar editar uma tarefa com campos vazios está sendo retornado erro de validação', function () {
 
-    Sanctum::actingAs(User::factory()->create());
+    Sanctum::actingAs($this->user);
 
     $this->postJson('/api/todos', ['name' => 'Todo Test'])
         ->assertStatus(201)
@@ -101,14 +103,14 @@ test('verifique se somente usuários autenticados podem deletar uma tarefa', fun
 });
 test('verificando se ao tentar deletar uma todo sem passar o ID um erro é retornado', function () {
 
-    Sanctum::actingAs(User::factory()->create());
+    Sanctum::actingAs($this->user);
 
     $this->json('delete', '/api/todos')
         ->assertStatus(405);
 });
 test('verificando se ao tentar deletar uma todo que não existe um alerta está sendo retornado', function () {
 
-    Sanctum::actingAs(User::factory()->create());
+    Sanctum::actingAs($this->user);
 
     $this->json('delete', '/api/todos/10')
         ->assertStatus(404)
@@ -123,7 +125,7 @@ test('verificando se ao tentar deletar uma todo que não existe um alerta está 
 });
 test('verificando uma tarefa foi deletada com sucesso', function () {
 
-    Sanctum::actingAs(User::factory()->create());
+    Sanctum::actingAs($this->user);
 
     $this->json('delete', '/api/todos/1')
         ->assertJson(

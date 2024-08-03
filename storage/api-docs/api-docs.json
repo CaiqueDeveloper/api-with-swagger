@@ -690,7 +690,7 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "query",
+                        "in": "path",
                         "description": " Get todo",
                         "required": true
                     }
@@ -785,7 +785,7 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "query",
+                        "in": "path",
                         "description": " Delete todo",
                         "required": true
                     }

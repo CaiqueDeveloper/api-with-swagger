@@ -164,7 +164,7 @@ trait SwaggerTodo
                     'bearerAuth' => []
                 ]
             ],
-            parameters: [new OA\Parameter(name: 'id', in: 'query', required: true, description: ' Get todo')],
+            parameters: [new OA\Parameter(name: 'id', in: 'path', required: true, description: ' Get todo')],
             requestBody: new  OA\RequestBody(
                 content: new OA\MediaType(
                     mediaType: 'application/json',
@@ -319,7 +319,7 @@ trait SwaggerTodo
                     'bearerAuth' => []
                 ]
             ],
-            parameters: [new OA\Parameter(name: 'id', in: 'query', required: true, description: ' Delete todo')],
+            parameters: [new OA\Parameter(name: 'id', in: 'path', required: true, description: ' Delete todo')],
             requestBody: new  OA\RequestBody(
                 content: new OA\MediaType(
                     mediaType: 'application/json',

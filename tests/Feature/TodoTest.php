@@ -127,6 +127,7 @@ test('verificando uma tarefa foi deletada com sucesso', function () {
 
     $this->json('delete', '/api/todos/1')
         ->assertJson(
+
             fn (AssertableJson $json) =>
 
             $json->hasAny(['meta', 'data'])

@@ -85,7 +85,7 @@ Eu me deparei em um senário no qual após 4 anos trabalhando com dev PHP/Larave
 - [x] Get All Todos
 - [x] Get Todo
 - [x] Update Todo
-- [] Delete Todo
+- [x] Delete Todo
 
 ## Security Vulnerabilities
 

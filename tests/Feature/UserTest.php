@@ -30,5 +30,9 @@ it('verifique se o usuário auteticado consguiu atulizar as informações dele c
                 ->where('meta.message', 'User updated successfully!')
         );
 });
-todo('verique se ao tentar deletar os dados de usuário não estando logado um error de validação é retornado');
+it('verique se ao tentar deletar um usuario não estando logado um erro de Unauthorized é retornado', function () {
+
+    $this->deleteJson('/api/user', [])
+        ->assertUnauthorized();
+});
 todo('verifique se o usuário  foi deletado com seucesso');

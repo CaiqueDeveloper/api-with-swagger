@@ -79,8 +79,8 @@ Eu me deparei em um senário no qual após 4 anos trabalhando com dev PHP/Larave
 - [x] login
 - [x] Logout
 - [x] Register User
-- [] Update User
-- [] Delete User
+- [x] Update User
+- [x] Delete User
 - [x] Register Todo
 - [x] Get All Todos
 - [x] Get Todo

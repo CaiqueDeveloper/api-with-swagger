@@ -35,4 +35,21 @@ it('verique se ao tentar deletar um usuario não estando logado um erro de Unaut
     $this->deleteJson('/api/user', [])
         ->assertUnauthorized();
 });
-todo('verifique se o usuário  foi deletado com seucesso');
+it('verifique se o usuário  foi deletado com seucesso', function () {
+    $user = User::factory()->create();
+
+    Sanctum::actingAs($user);
+
+    $this->deleteJson("/api/user", [
+        'id' => $user->id,
+    ])
+        ->assertStatus(200)
+        ->assertJson(
+            fn (AssertableJson $json) =>
+
+            $json->hasAny(['meta', 'data', 'access_token'])
+                ->where('meta.code', 200)
+                ->where('meta.status', 'success')
+                ->where('meta.message', 'User deleted successfully!')
+        );
+});

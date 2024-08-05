@@ -27,8 +27,8 @@ class UpdateUser extends FormRequest
     {
         return [
             'name' => 'required|min:8|max:255',
-            'email' => 'required|email|unique:users,email,' . Auth::user()->id,
-            'password' => 'required|min:8|max:16|confirmed',
+            'email' => 'nullable|email|unique:users,email,' . Auth::user()->id,
+            'password' => 'nullable|min:8|max:16|confirmed',
         ];
     }
     public function failedValidation(Validator $validator)
